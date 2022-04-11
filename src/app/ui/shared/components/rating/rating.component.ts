@@ -15,6 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms"
 })
 export class RatingComponent implements OnInit, ControlValueAccessor {
   public stars: boolean[] = [ false, false, false, false, false ]
+  public isDisabled: boolean = false
 
   @Input()
   public readonly: boolean = false
@@ -41,7 +42,7 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
   }
 
   public setDisabledState(isDisabled: boolean): void {
-    if (isDisabled) {this.readonly = true}
+    this.isDisabled = isDisabled
   }
 
   public writeValue(ratingCount: number) {
@@ -55,10 +56,6 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
   }
 
   public onClickStar(index: number): void {
-    console.log(this.readonly)
-    if (this.readonly) {
-      return
-    }
 
     const newStars: boolean[] = new Array(this.stars.length).fill(false)
 
