@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { MdEditorComponent } from "./md-editor.component"
+import { FormsModule } from "@angular/forms"
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { MdEditorComponent } from "./md-editor.component"
     MdEditorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class MdEditorModule { }

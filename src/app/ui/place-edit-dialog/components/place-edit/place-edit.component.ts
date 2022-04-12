@@ -10,14 +10,12 @@ export class PlaceEditComponent implements OnInit {
   public form: FormGroup = new FormGroup({
     name: new FormControl(),
     rating: new FormControl(2, Validators.min(1)),
-    description: new FormControl(),
+    description: new FormControl('# Заголовок 1 \n## Заголовок 2'),
     tags: new FormControl([ "Паб", "Бар", "Гастропаб", "Ресторан" ]),
     photos: new FormControl()
   })
 
   constructor() {
-    this.form.get('rating').disable()
-    // this.form.get('rating').enable()
   }
 
   ngOnInit(): void {
