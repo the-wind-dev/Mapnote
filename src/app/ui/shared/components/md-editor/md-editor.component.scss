@@ -1,0 +1,62 @@
+:host {
+  display: block;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #DDDDDD;
+  border-radius: 14px;
+}
+.tabs label {
+  order: 1;
+  display: block;
+
+  padding: 8px 15px;
+  border-radius: 14px 14px 0 0;
+
+  cursor: pointer;
+}
+.tabs .tab {
+  order: 99; 
+  flex-grow: 1;
+	width: 100%;
+	display: none;
+  background: #F2F2F2;
+  border-radius: 0 0 14px 14px;
+
+}
+
+.tabs input[type="radio"] {
+	display: none;
+}
+
+.tabs input[type="radio"]:checked + label {
+	background: #F2F2F2;
+}
+
+.tabs input[type="radio"]:checked + label + .tab {
+	display: block;
+}
+
+.tabs textarea {
+  resize: vertical;
+
+  min-height: 100px;
+  max-height: 500px;
+  width: 100%;
+  padding: 12px 10px 12px 10px;
+  margin-bottom: -5px;
+
+  border: none;
+  border-radius: 0 0 14px 14px;
+  background: inherit;
+
+  font-family: monospace;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 28px;
+}
+.tab-result {
+  padding: 12px 10px 12px 10px;
+}

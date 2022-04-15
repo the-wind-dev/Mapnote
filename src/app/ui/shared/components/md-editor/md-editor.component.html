@@ -1,0 +1,15 @@
+<div class="tabs">
+    <input type="radio" name="tabs" id="first-tab" checked="checked">
+    <label for="first-tab">Контент</label>
+    <div class="tab tab-content">
+        <textarea  
+                   (ngModelChange)="onChangeTextareaValue($event)"
+                   (focus)="onTouch()"
+                   [ngModel]="textareaValue"
+                   ></textarea>  
+    </div>
+
+    <input type="radio" name="tabs" id="second-tab">
+    <label for="second-tab" >Результат</label>
+    <div class="tab tab-result" [innerHTML]="convertMdToHTML(textareaValue)"></div>
+</div>
