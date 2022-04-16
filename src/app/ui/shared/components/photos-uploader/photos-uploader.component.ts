@@ -1,5 +1,6 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { getDataUrlFromImageFile } from 'src/app/lib/image';
 
 @Component({
   selector: 'mn-photos-uploader',
@@ -22,14 +23,25 @@ export class PhotosUploaderComponent implements OnInit, ControlValueAccessor {
 
   constructor() { }
 
-  public onClickRemooveButton(imageIndex: number): void {
+  public onClickRemoveImageButton(imageIndex: number): void {
     this.images = this.images.filter((_, index) => index !== imageIndex)
   }
 
   public onChangePhotosInput(event: Event): void {
-    const target: HTMLElement = event.target as HTMLElement;
+    const target: HTMLInputElement = event.target as HTMLInputElement;
     const files: File[] = Array.from(target.files);
     const filesPending: Promise<string>[] = files.map((file) => getDataUrlFromImageFile(file))
+
+    Promise.allSettled(filesPending).then((results) =>{
+      const imagesAsDataUrl = results
+      .filter((result) => result.status === "fulfilled")
+      .map((result: PromiseFulfilledResult<string>) => result.value)
+
+      this.images = [...this.images, ...imagesAsDataUrl]
+      target.value = null
+      this,this.onChange(this.images)
+      this.onTouch()
+    })
   }
 
   public onChange(value: string[]): void {
