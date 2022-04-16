@@ -6,6 +6,7 @@ import { TagsModule } from "../shared/components/tags/tags.module"
 import { MdEditorModule } from '../shared/components/md-editor/md-editor.module';
 import { PlaceEditComponent } from './components/place-edit/place-edit.component';
 import { PhotosUploaderModule } from '../shared/components/photos-uploader/photos-uploader.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { PhotosUploaderModule } from '../shared/components/photos-uploader/photo
     TagsModule,
     MdEditorModule,
     PhotosUploaderModule,
+    HttpClientModule
   ]
 })
 export class PlaceEditDialogModule { }

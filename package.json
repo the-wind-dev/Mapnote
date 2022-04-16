@@ -5,7 +5,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start-fake-db": "json-server --watch ./db.json"
   },
   "private": true,
   "dependencies": {
@@ -18,9 +19,10 @@
     "@angular/platform-browser-dynamic": "13.1.0",
     "@angular/router": "13.1.0",
     "@types/leaflet": "1.7.9",
+    "json-server": "^0.17.0",
     "leaflet": "1.7.1",
-    "snarkdown": "2.0.0",
     "rxjs": "7.4.0",
+    "snarkdown": "2.0.0",
     "tslib": "2.3.0",
     "zone.js": "0.11.4"
   },
