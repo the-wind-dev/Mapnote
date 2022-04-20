@@ -13,6 +13,7 @@ import { LeafletMouseEvent } from "leaflet"
 export class ShellComponent implements OnInit {
   public searchFormControl: FormControl = new FormControl()
   public isShowAddButton: boolean = false
+  private addButtonLifeTimerId: number | null = null
 
   constructor(private mapService: MapService,
               private dialogService: DialogService) {
@@ -23,11 +24,17 @@ export class ShellComponent implements OnInit {
       map.addEventListener("click", (event: LeafletMouseEvent) => {
         this.isShowAddButton = true
         this.dialogService.isCurrentEditLatLng = event.latlng
+
+        if (this.addButtonLifeTimerId !== null) {
+          clearTimeout(this.addButtonLifeTimerId)
+        }
+
+        this.addButtonLifeTimerId = window.setTimeout(() => {
+          this.isShowAddButton = false
+        }, 5000)
       })
 
-      // map.addEventListener("blur", () => {
-      //   this.isShowAddButton = false
-      // })
+      
     })
     
   }
@@ -37,6 +44,8 @@ export class ShellComponent implements OnInit {
   }
 
   public onClickAddButton(): void {
-    this.dialogService.isShowCreateOrEditDialog = true
+    this.dialogService.open()
+    this.isShowAddButton = false
+    clearTimeout(this.addButtonLifeTimerId)
   }
 }

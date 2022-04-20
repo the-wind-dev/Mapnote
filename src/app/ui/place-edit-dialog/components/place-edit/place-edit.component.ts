@@ -4,6 +4,7 @@ import { DialogService } from "src/app/dialog.service"
 import { HttpClient } from "@angular/common/http"
 import { Coordinates } from "src/app/domain/coordinates"
 import { firstValueFrom } from "rxjs"
+import { PlaceService } from "src/app/ui/shared/api/place.service"
 
 @Component({
   selector: "mn-place-edit",
@@ -20,14 +21,14 @@ export class PlaceEditComponent implements OnInit {
   })
 
   constructor(private dialogService: DialogService,
-              private httpClient: HttpClient) {
+              public placeService: PlaceService) {
   }
 
   ngOnInit(): void {
   }
   public onClickCancelButton(): void {
     this.form.reset()
-    this.dialogService.isShowCreateOrEditDialog = false
+    this.dialogService.close()
   }
 
   public onClickSaveButton(): void {
@@ -43,6 +44,14 @@ export class PlaceEditComponent implements OnInit {
       longitude: latlng.lng,
     }
 
-    firstValueFrom(this.httpClient.post('http://localhost:3000/places', {...formValue, coordinates: coordinates})).then(console.log)
+    this.placeService.create({...formValue, coordinates: coordinates })
+      .then( () => {
+        alert('Успешно!')
+      })
+      .catch( (error) => {
+        alert('Ошибка!(')
+        console.error(error)
+      })
+    this.dialogService.close()
   }
 }
