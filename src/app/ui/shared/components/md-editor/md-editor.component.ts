@@ -47,6 +47,9 @@ export class MdEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(markdownStr: string): void {
+    if (markdownStr === null) {
+      return
+    }
     this.textareaValue = markdownStr;
   }
 

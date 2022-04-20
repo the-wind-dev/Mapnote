@@ -1,6 +1,8 @@
 import { AfterViewInit, Component } from "@angular/core"
 import { LatLng, TileLayer } from "leaflet"
 import { LeafletMap } from "./lib"
+import { DialogService } from "./dialog.service"
+import { MapService } from "./map.service"
 
 @Component({
   selector: "mn-root",
@@ -8,6 +10,7 @@ import { LeafletMap } from "./lib"
   styleUrls: [ "./app.component.scss" ]
 })
 export class AppComponent implements AfterViewInit {
+
   public ngAfterViewInit(): void {
     const map = new LeafletMap("map-container", {
       layers: [
@@ -18,5 +21,10 @@ export class AppComponent implements AfterViewInit {
       center: new LatLng(45.040034, 38.975828),
       zoom: 13
     })
+
+    this.mapService.setLeafletMap(map)
   }
+
+  constructor(private mapService: MapService,
+              public readonly dialogService: DialogService) {}
 }
