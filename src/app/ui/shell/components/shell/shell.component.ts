@@ -16,7 +16,8 @@ export class ShellComponent implements OnInit {
   private addButtonLifeTimerId: number | null = null
 
   constructor(private mapService: MapService,
-              private dialogService: DialogService) {
+              private dialogService: DialogService,
+              ) {
   }
 
   public ngOnInit(): void {
@@ -48,4 +49,9 @@ export class ShellComponent implements OnInit {
     this.isShowAddButton = false
     clearTimeout(this.addButtonLifeTimerId)
   }
+
+  public onChangeSelectedTags(event: Event) {
+    console.log(event)
+  }
+
 }

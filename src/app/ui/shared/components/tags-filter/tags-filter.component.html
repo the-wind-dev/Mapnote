@@ -1,0 +1,8 @@
+<ul class="tags-container">
+    <li class="tag tag-button"
+        *ngFor="let element of elements; index as index"
+        [class.selected]="(selected.indexOf(element) + 1)"
+        (click)="onClickTagButton($event)">
+        {{element}}
+    </li>
+</ul>
